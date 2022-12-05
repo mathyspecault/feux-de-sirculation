@@ -12,7 +12,7 @@ function countdown () {
     basic.showNumber(t)
     basic.pause(1000)
     t = t - 1
-    if (t == 5) {
+    if (t == 7) {
         radio.sendString("Fo")
     } else if (t == 0) {
         Etat = 0
@@ -76,11 +76,11 @@ radio.onReceivedString(function (receivedString) {
         feu_O_2()
         basic.pause(2000)
         feu_R_2()
-        t = 20
+        t = 42
         Etat = 1
     }
     if (receivedString == "Sy") {
-        t = 7
+        t = 10
         Etat = 1
     }
 })
