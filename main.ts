@@ -2,7 +2,7 @@ enum RadioMessage {
     message1 = 49434
 }
 function feu_O () {
-    strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Orange))
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Orange))
     strip.show()
     basic.pause(2000)
     strip.clear()
@@ -17,13 +17,92 @@ function countdown () {
     } else if (t == 0) {
         Etat = 0
         feu_V_2()
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
+        while (Etat == 0) {
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . # . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . # . .
+                . . # . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . # . .
+                . . # . .
+                . # # # .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . # . .
+                . . # . .
+                . # # # .
+                . # # # .
+                `)
+            basic.showLeds(`
+                . . # . .
+                . . # . .
+                . # # # .
+                . # # # .
+                . # # # .
+                `)
+            basic.showLeds(`
+                . . # . .
+                . # # # .
+                . # # # .
+                # # # # #
+                # # # # #
+                `)
+            basic.showLeds(`
+                . # # # .
+                # # # # #
+                # # # # #
+                # # # # #
+                # # # # #
+                `)
+            basic.showLeds(`
+                # # # # #
+                # # # # #
+                # # # # #
+                # # # # #
+                . . . . .
+                `)
+            basic.showLeds(`
+                # # # # #
+                # # # # #
+                # # # # #
+                . . . . .
+                . . . . .
+                `)
+            basic.showLeds(`
+                # # # # #
+                # # # # #
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
+            basic.showLeds(`
+                # # # # #
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
+        }
     }
 }
 input.onButtonPressed(Button.A, function () {
@@ -32,17 +111,17 @@ input.onButtonPressed(Button.A, function () {
 function feu_R_2 () {
     strip.clear()
     strip.show()
-    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(4, neopixel.colors(NeoPixelColors.Red))
     strip.show()
 }
 function feux_c2 () {
     if (Etat == 1) {
-        countdown()
+        countdown2()
     } else {
         basic.pause(5000)
         strip.clear()
         strip.show()
-        strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
+        strip.setPixelColor(4, neopixel.colors(NeoPixelColors.Red))
         strip.show()
         Etat = 1
         t = 10
@@ -53,8 +132,24 @@ function feux_c1 () {
     feu_O()
     feu_R()
 }
+function countdown2 () {
+    basic.showNumber(t)
+    basic.pause(1000)
+    t = t - 1
+    if (t == 0) {
+        Etat = 0
+        feu_V_2()
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            `)
+    }
+}
 function initi_neo () {
-    strip = neopixel.create(DigitalPin.P0, 3, NeoPixelMode.RGB)
+    strip = neopixel.create(DigitalPin.P3, 5, NeoPixelMode.RGB)
     strip.setBrightness(32)
     strip.clear()
     strip.show()
@@ -62,10 +157,10 @@ function initi_neo () {
 function feu_O_2 () {
     strip.clear()
     strip.show()
-    strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Orange))
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Orange))
 }
 function feu_R () {
-    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
+    strip.setPixelColor(4, neopixel.colors(NeoPixelColors.Red))
     strip.show()
     basic.pause(10000)
     strip.clear()
@@ -76,7 +171,7 @@ radio.onReceivedString(function (receivedString) {
         feu_O_2()
         basic.pause(2000)
         feu_R_2()
-        t = 42
+        t = 44
         Etat = 1
     }
     if (receivedString == "Sy") {
